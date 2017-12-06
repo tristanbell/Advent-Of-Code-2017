@@ -27,3 +27,39 @@ for line in lines
 }
 
 print(validPhrases)
+
+// Part 2
+validPhrases = 0
+
+for line in lines
+{
+    var words = line.components(separatedBy: " ")
+    
+    var sortedWords:[String] = []
+    
+    for var word in words
+    {
+        let sorted = word.characters.sorted()
+        word = String(sorted)
+        sortedWords += [word]
+    }
+    
+    sortedWords.sort()
+    
+    var isValid = true
+    for i in 0..<sortedWords.count - 1
+    {
+        if sortedWords[i] == sortedWords[i+1]
+        {
+            isValid = false
+            break
+        }
+    }
+    
+    if isValid
+    {
+        validPhrases += 1
+    }
+}
+
+print(validPhrases)
